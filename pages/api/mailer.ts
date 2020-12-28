@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-// require('dotenv').config();
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handler(req, res) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const output = `
     <h2>Contact Details</h2>
     <ul>
@@ -11,8 +11,6 @@ export default function handler(req, res) {
     <h2>Message</h2>
     <p>${req.body.message}</p>
   `;
-
-  console.log('process.env is ', process.env);
 
   const { SMTP_SERVICE, SMTP_USER, SMTP_PASS, SMTP_RECEIVER } = process.env;
 
@@ -34,13 +32,10 @@ export default function handler(req, res) {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.status = 400;
-      res.end();
+      res.status(400).end();
     }
     console.log('Message sent: %s', info.messageId);
-
-    res.render('contact', { msg: 'Email has been sent' });
   });
-  res.status = 200;
-  res.end();
+
+  res.status(200).end();
 }
