@@ -17,39 +17,41 @@ const Reels: React.FC = () => {
 
   return (
     <Layout>
-      <Styled.Wrapper>
-        <Styled.Container>
-          {videos.map((video) => (
-            <Styled.Preview
+      <>
+        <Styled.Wrapper>
+          <Styled.Container>
+            {videos.map((video) => (
+              <Styled.Preview
+                onClick={() => {
+                  setActiveVideo(video);
+                }}
+              >
+                <source src={video} type="video/mp4" />
+              </Styled.Preview>
+            ))}
+          </Styled.Container>
+        </Styled.Wrapper>
+        <Modal
+          isOpen={!!activeVideo}
+          onRequestClose={() => {
+            setActiveVideo(null);
+          }}
+          shouldCloseOnEsc
+        >
+          <Styled.VideoContainer>
+            <Styled.CloseVideoButton
               onClick={() => {
-                setActiveVideo(video);
+                setActiveVideo(null);
               }}
             >
-              <source src={video} type="video/mp4" />
-            </Styled.Preview>
-          ))}
-        </Styled.Container>
-      </Styled.Wrapper>
-      <Modal
-        isOpen={!!activeVideo}
-        onRequestClose={() => {
-          setActiveVideo(null);
-        }}
-        shouldCloseOnEsc
-      >
-        <Styled.VideoContainer>
-          <Styled.CloseVideoButton
-            onClick={() => {
-              setActiveVideo(null);
-            }}
-          >
-            X
-          </Styled.CloseVideoButton>
-          <Styled.Video controls controlsList="nodownload">
-            <source src={activeVideo ?? ''} type="video/mp4" />
-          </Styled.Video>
-        </Styled.VideoContainer>
-      </Modal>
+              X
+            </Styled.CloseVideoButton>
+            <Styled.Video controls controlsList="nodownload">
+              <source src={activeVideo ?? ''} type="video/mp4" />
+            </Styled.Video>
+          </Styled.VideoContainer>
+        </Modal>
+      </>
     </Layout>
   );
 };
