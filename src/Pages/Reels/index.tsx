@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 Modal.setAppElement('#__next');
 
 const videos = [
-  './videos/aBeautifulNight.mov',
+  './videos/aBeautifulNight.mp4',
   './videos/googleMan.mp4',
   './videos/nerf.mp4',
   './videos/teamleaderSaveTime.mp4',
