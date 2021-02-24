@@ -6,10 +6,10 @@ import Modal from 'react-modal';
 Modal.setAppElement('#__next');
 
 const videos = [
-  './videos/aBeautifulNight.mp4',
   './videos/googleMan.mp4',
-  './videos/nerf.mp4',
   './videos/teamleaderSaveTime.mp4',
+  './videos/nerf.mp4',
+  './videos/aBeautifulNight.mp4',
 ];
 
 const Reels: React.FC = () => {
